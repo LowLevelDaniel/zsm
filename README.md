@@ -1,2 +1,2 @@
-# zsm
+# Zembly
 A Modern Multi-Device Assembly Language with macro support.
