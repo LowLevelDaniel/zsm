@@ -1,0 +1,36 @@
+// Allow for cross platform input / output operations
+//  This will be a mimic of stdio.h
+
+// since zembly dosen't strictly allow for structs STREAM* is instead simulated
+//  in this case stream is defined in a comment (there will be an actual typedef struct if using z)
+/*
+  struct STREAM {
+
+  };
+  STREAM* fopen   ()                           // open a file as a STREAM
+  STREAM* memopen ()                           // open memory as a STREAM
+  void    sclose  (STREAM*)                    // stream close
+  void    sgetc   (STREAM*)                    // stream get char
+  void    sprintf (STREAM*, const char *, ...) // stream printf()
+*/
+#include <stdz/types.h>
+
+#ifdef __LANG_ZPP
+namespace stdz {
+#endif
+
+#ifdef __LANG_Z // also defined by default on compilers that can parse this
+  typedef struct {
+    char_t* data;
+    size_t  size;
+  } STREAM;
+  #define SIZE_STREAM sizeof(STREAM)
+#else
+  #define SIZE_STREAM STD_SIZE_T * 2
+#endif
+
+fopen() { /* Open a file as a stream */ }
+
+#ifdef __LANG_ZPP
+};
+#endif
